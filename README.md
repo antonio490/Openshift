@@ -15,8 +15,6 @@ Tools like SCM, pipelines (develop, build and deploy), Registry, Software define
 
 ## Architectural overview
 
-
-
 ### Components
 
 - Kubernetes
@@ -38,14 +36,25 @@ Tools like SCM, pipelines (develop, build and deploy), Registry, Software define
 4. Start minishift
 
      $ minishift start
+     Starting local OpenShift cluster using 'kvm' hypervisor...
+     ...
+     OpenShift server started.
+     The server is accessible via web console at:
+     https://192.168.99.128:8443
 
-user: system
-password: admin
+     You are logged in as:
+     User:     developer
+     Password: developer
+
+     To login to your Minishift installation as administrator:
+     oc login -u system:admin
+
+
 
 ## Management - Web, CLI, API
 
 
-     > oc login -u system -p admin
+     > oc login -u system:admin
 
      > oc logout
 
@@ -56,4 +65,25 @@ password: admin
         -H "Authorization: Bearer <Token>"
      
     # returns our bearer token
-     oc whoami -t 
+     > oc whoami -t 
+
+## Projects and Users
+
+Openshift can hold hundreds of projects in form of pods. In order to
+help teams to manage applications, openshift has projects. Namespaces provide isolation.
+
+There are three types of users: Regular user (developer), system user (cluster admin system:admin and system:master) and service user (system:serviceaccount).
+
+By default minishift comes with an allow all policy authorization. In case of an advanced installation Deny all policy is also used. Configuration is provided under this file: /etc/openshift/master/master-config.yaml
+
+<code>
+
+    $ oc login -u system:admin
+
+    > oc get projects
+
+    > oc get users
+
+    > oc adm policy add-cluster-role-to-user cluster-admin administrator
+
+</code>
