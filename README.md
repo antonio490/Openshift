@@ -87,3 +87,7 @@ By default minishift comes with an allow all policy authorization. In case of an
     > oc adm policy add-cluster-role-to-user cluster-admin administrator
 
 </code>
+
+## Builds and deployment
+
+Openshift creates builds referencing source code management repositories (Github, Bitbucket or Gitlab). It downloads the source, build an image, push it to Registry and Deploy the application on the build in kubernetes cluster. Everything is taking care by openshift and it only requires us to provide the source repository url.
