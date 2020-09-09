@@ -91,3 +91,24 @@ By default minishift comes with an allow all policy authorization. In case of an
 ## Builds and deployment
 
 Openshift creates builds referencing source code management repositories (Github, Bitbucket or Gitlab). It downloads the source, build an image, push it to Registry and Deploy the application on the build in kubernetes cluster. Everything is taking care by openshift and it only requires us to provide the source repository url.
+
+### Build triggers
+
+Instead of launching builds manually it is more convenient to do it automatically, in a continious integrated way.
+
+We just need to find on the configuration app screen the webhook URL for our source repository and paste it on the webhook URL payload at the repository settings page.
+
+Source repo --> Webhook --> Openshift
+
+### Deployment
+
+
+|-----------|--------|------------------------|-----------------------|
+| Container |  POD   | Replication Controller | Deployment Controller |
+|-----------|--------|------------------------|-----------------------|
+
+How often does a deplyment update?
+
+- We can manually trigger the update or configured to automatically update everytime a job build runs.
+- Easy and flexible.
+- Rolling strategy means that every replica is also update.
